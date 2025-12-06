@@ -1,0 +1,213 @@
+@import './styles/main.css';
+
+:root {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+/* In index.css */
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+/* Prevent horizontal scroll on mobile */
+html, body, #root {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Make layout sizing predictable */
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+
+/* Ensure media never overflows */
+img, video, canvas, svg { max-width: 100%; height: auto; display: block; }
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+/* Custom styles extracted from HTML files */
+html { scroll-behavior: smooth; }
+.section { padding-top: 80px; margin-bottom: 80px; }
+.glass-card {
+  background-color: rgba(247, 125, 43, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(247, 125, 43, 0.2);
+}
+.masonry-grid { column-count: 1; column-gap: 1.5rem; }
+@media (min-width: 640px) { .masonry-grid { column-count: 2; } }
+@media (min-width: 1024px) { .masonry-grid { column-count: 3; } }
+@media (min-width: 1280px) { .masonry-grid { column-count: 4; } }
+@media (min-width: 1536px) { .masonry-grid { column-count: 5; } }
+.masonry-item { break-inside: avoid; margin-bottom: 1.5rem; }
+.glass-button {
+  background-color: rgba(247, 125, 43, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(247, 125, 43, 0.2);
+  transition: background-color 0.3s, border-color 0.3s;
+}
+.glass-button:hover {
+  background-color: rgba(247, 125, 43, 0.2);
+  border-color: rgba(247, 125, 43, 0.3);
+}
+.glow { box-shadow: 0 0 30px 0px rgba(247, 125, 43, 0.3); }
+.parallax { transform: translateZ(-5px) scale(1.05); }
+.parallax-container { perspective: 1000px; }
+.group:hover .group-hover\:block { display: block; }
+.group:hover .group-hover\:opacity-100 { opacity: 1; }
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+.glassmorphism {
+  background: rgba(39, 32, 27, 0.5);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(85, 69, 58, 0.3);
+}
+.dark .glassmorphism {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.testimonial-card {
+  background: rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.dark .testimonial-card {
+  background: rgba(45, 30, 18, 0.2);
+  border: 1px solid rgba(247, 125, 43, 0.2);
+}
+body { font-family: "Inter", sans-serif; }
+
+/* Modern Animations */
+@keyframes gradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 3s ease infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.6s ease-out;
+}
+
+/* Smooth transitions for all interactive elements */
+* {
+  transition-property: transform, opacity, background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Disable transitions for elements that shouldn't have them */
+button, a, input, select, textarea {
+  transition-duration: 200ms;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #221710;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #f77d2b;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff8c3a;
+}
+
+/* Hide scrollbar for horizontal scroll areas */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}

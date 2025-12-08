@@ -36,7 +36,7 @@ const Navbar = () => {
         <div className={`
           relative flex items-center transition-all duration-700 ease-out rounded-full
           ${isScrolled 
-            ? 'justify-center px-3 sm:px-8 py-2 sm:py-3.5 bg-gradient-to-r from-primary to-orange-600 shadow-2xl shadow-primary/40 scale-100 border-transparent ring-1 ring-white/20 backdrop-blur-md' 
+            ? 'justify-center px-0 sm:px-8 py-1.5 sm:py-3.5 bg-gradient-to-r from-primary to-orange-600 shadow-2xl shadow-primary/40 scale-100 border-transparent ring-1 ring-white/20 backdrop-blur-md' 
             : 'justify-between px-4 sm:px-6 py-3 sm:py-4 bg-gradient-to-r from-[#2a2320]/90 via-[#1a1410]/90 to-[#2a2320]/90 backdrop-blur-xl border-white/10 shadow-2xl shadow-black/50'
           }
           border
@@ -54,7 +54,7 @@ const Navbar = () => {
             href="/" 
             className={`
               flex items-center gap-1.5 sm:gap-2 relative z-10 transition-all duration-700
-              ${isScrolled ? 'opacity-0 scale-0 w-0 overflow-hidden' : 'opacity-100 scale-100'}
+              ${isScrolled ? 'opacity-0 scale-0 w-0 overflow-hidden hidden' : 'opacity-100 scale-100'}
             `}
           >
             <div className="w-6 h-6 sm:w-7 sm:h-7 bg-gradient-to-br from-primary to-orange-600 rounded-lg flex items-center justify-center shadow-lg shadow-primary/50 flex-shrink-0">
@@ -74,10 +74,10 @@ const Navbar = () => {
               <a 
                 key={link.name} 
                 href={link.href} 
-                className="text-white/70 hover:text-white transition-colors duration-300 px-1 lg:px-2 relative group whitespace-nowrap text-sm lg:text-base inline-block pb-1"
+                className="text-white/70 hover:text-white transition-colors duration-300 px-1 lg:px-2 relative group/link whitespace-nowrap text-sm lg:text-base inline-block pb-1"
               >
                 <span className="relative z-10">{link.name}</span>
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-orange-400 transition-[width] duration-300 group-hover:w-full" />
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-orange-400 transition-[width] duration-300 group-hover/link:w-full" />
               </a>
             ))}
             <button 
@@ -115,8 +115,8 @@ const Navbar = () => {
           <button 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className={`
-              md:hidden text-white relative z-10 p-2 rounded-lg hover:bg-white/10 transition-all duration-700 min-w-[44px] min-h-[44px] flex items-center justify-center
-              ${isScrolled ? 'opacity-0 scale-0 w-0 overflow-hidden pointer-events-none' : 'opacity-100 scale-100'}
+              md:hidden text-white relative z-10 p-2 rounded-lg hover:bg-white/10 transition-all duration-700 min-w-[36px] min-h-[36px] flex items-center justify-center
+              ${isScrolled ? 'hidden' : 'opacity-100 scale-100'}
             `}
             aria-label="Toggle menu"
           >
@@ -137,21 +137,21 @@ const Navbar = () => {
             </svg>
           </button>
 
-          {/* Mobile CTA when scrolled - transforms into the button */}
+          {/* Mobile CTA when scrolled */}
           <button 
             onClick={() => {
               const bookingHandler = window.bookCalendly;
               if (bookingHandler) bookingHandler();
             }}
             className={`
-              md:hidden flex items-center justify-center gap-2 transition-all duration-700 bg-transparent border-none cursor-pointer min-h-[44px] w-full
+              md:hidden flex items-center gap-1 transition-all duration-700 bg-transparent border-none cursor-pointer
               ${isScrolled ? 'opacity-100 scale-100' : 'opacity-0 scale-0 absolute pointer-events-none'}
             `}
           >
-            <svg className="w-5 h-5 text-white flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-4 h-4 text-white flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
-            <span className="text-white font-bold text-base sm:text-lg whitespace-nowrap">Book Call</span>
+            <span className="text-white font-bold text-sm whitespace-nowrap">Book Call</span>
           </button>
         </div>
       </nav>

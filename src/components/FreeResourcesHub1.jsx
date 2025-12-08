@@ -138,24 +138,22 @@ const FreeResourcesHub1 = () => {
           </div>
           
           {/* Resources grid */}
-          <div ref={containerRef} className="lg:col-span-2 relative">
-            <MouseLight containerRef={containerRef} />
+          <div className="lg:col-span-2 relative">
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
               {filteredResources.map((resource, index) => (
                 <div
                   key={resource.title}
                   onMouseEnter={() => setHoveredIndex(index)}
                   onMouseLeave={() => setHoveredIndex(null)}
-                  className="relative group bg-[#3a322f]/50 rounded-2xl h-full border transition-all duration-500 animate-slide-up hover:-translate-y-2 hover:shadow-xl hover:shadow-orange-500/20"
+                  className="relative z-10 group bg-[#3a322f]/50 rounded-2xl h-full border border-white/10 hover:border-orange-500/50 animate-slide-up hover:-translate-y-2"
                   style={{ 
-                    animationDelay: `${index * 0.1}s`,
-                    borderColor: hoveredIndex === index ? 'rgba(247, 125, 43, 0.5)' : 'rgba(255, 255, 255, 0.1)'
+                    animationDelay: `${index * 0.1}s`
                   }}
                 >
                   <div className="flex flex-col h-full w-full">
                     {/* Image container */}
                     <div className="relative overflow-hidden rounded-t-2xl">
-                      <div className={`w-full flex items-center justify-center p-8 ${resource.aspectRatio} ${resource.bgColor} transition-transform duration-500 ${hoveredIndex === index ? 'scale-110' : 'scale-100'}`}>
+                      <div className={`w-full flex items-center justify-center p-8 ${resource.aspectRatio} ${resource.bgColor}`}>
                         <img
                           src={resource.imageUrl}
                           alt={resource.title}

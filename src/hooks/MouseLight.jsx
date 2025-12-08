@@ -12,8 +12,7 @@ const MouseLight = ({ containerRef }) => {
     <div
       className="pointer-events-none absolute inset-0 transition duration-300"
       style={{
-        // --- FIX IS HERE: Added a z-index to lift the light effect up ---
-        zIndex: 10,
+        zIndex: 0,
         background: `radial-gradient(600px at ${adjustedX}px ${adjustedY}px, rgba(255, 255, 255, 0.15), transparent 80%)`,
       }}
     ></div>

@@ -4,11 +4,6 @@ import { InlineWidget } from "react-calendly";
 const Booking = () => {
   return (
     <section id="book-call" className="min-h-screen flex items-center justify-center px-4 py-16 sm:py-20 lg:py-24 relative overflow-hidden">
-      {/* Animated background */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-64 sm:w-96 h-64 sm:h-96 bg-orange-500/5 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-64 sm:w-96 h-64 sm:h-96 bg-orange-600/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
-      </div>
       
       <div className="w-full max-w-5xl mx-auto relative z-10">
         <div className="text-center mb-8 sm:mb-12">

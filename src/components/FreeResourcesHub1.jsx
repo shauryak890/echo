@@ -91,10 +91,6 @@ const FreeResourcesHub1 = () => {
 
   return (
     <section id="resources" className="py-12 sm:py-16 relative overflow-hidden">
-      {/* Animated background */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl animate-float"></div>
-      </div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl relative z-10">
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-3">

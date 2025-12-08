@@ -26,24 +26,13 @@ const faqData = [
 
 const FAQ2 = () => {
   const [openIndex, setOpenIndex] = useState(null);
-  const [searchQuery, setSearchQuery] = useState("");
 
   const handleToggle = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  // Filter FAQs based on search
-  const filteredFaqData = faqData.filter(({ question, answer }) =>
-    question.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    answer.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
   return (
     <section id="faq" className="py-24 relative overflow-hidden">
-      {/* Animated background */}
-      <div className="absolute inset-0">
-        <div className="absolute bottom-0 left-1/3 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl"></div>
-      </div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl relative z-10">
         {/* Enhanced header */}
@@ -64,27 +53,11 @@ const FAQ2 = () => {
               support team
             </a>.
           </p>
-          
-          {/* Search bar */}
-          <div className="mt-8 max-w-xl mx-auto animate-slide-up" style={{ animationDelay: '0.2s' }}>
-            <div className="relative">
-              <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-              <input
-                type="text"
-                placeholder="Search questions..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 bg-[#3a322f] text-white rounded-lg border border-white/10 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none transition-all"
-              />
-            </div>
-          </div>
         </div>
 
         {/* Enhanced accordion */}
         <div className="space-y-4">
-          {filteredFaqData.map(({ question, answer }, index) => (
+          {faqData.map(({ question, answer }, index) => (
             <div
               key={question}
               className={`rounded-xl bg-gradient-to-br from-[#3a322f] to-[#2a2320] border transition-all duration-500 animate-slide-up ${
@@ -120,13 +93,6 @@ const FAQ2 = () => {
             </div>
           ))}
         </div>
-
-        {/* Show message if no results */}
-        {filteredFaqData.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-white/50">No questions found matching your search.</p>
-          </div>
-        )}
       </div>
     </section>
   );

@@ -169,16 +169,11 @@ const PodcastEditingPackages1 = () => {
 
   return (
     <section id="services" className="pt-24 pb-24 relative overflow-hidden">
-      {/* Animated background */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-orange-600/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
-      </div>
       
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         
         {/* Enhanced Hero Section */}
-        <div className="relative bg-gradient-to-br from-[#201a18] to-[#2a2320] rounded-3xl px-8 py-16 md:p-20 overflow-hidden mb-24 text-center md:text-left border border-white/10 shadow-2xl group">
+        <div className="relative bg-[#201a18] rounded-3xl px-8 py-16 md:p-20 overflow-hidden mb-24 text-center md:text-left border border-white/10 shadow-2xl group">
           <div className="absolute inset-0 bg-cover bg-center opacity-5 group-hover:opacity-10 transition-opacity duration-700" style={{backgroundImage: "url('https://images.unsplash.com/photo-1616587993988-53cdef62f283?auto=format&fit=crop&w=1400&q=80')"}}></div>
           
           {/* Floating microphone icon */}

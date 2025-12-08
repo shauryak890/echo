@@ -71,18 +71,18 @@ const CaseStudiesGrid = () => {
       <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-black dark:text-white">Our Work</h2>
     </div>
     <div className="mb-6 sm:mb-8">
-      {/* Compact pill bar with horizontal scroll on mobile */}
+      {/* Filter buttons with hero-style styling */}
       <nav
         aria-label="Tabs"
-        className="mx-auto w-full max-w-[360px] sm:max-w-none flex sm:justify-center items-center gap-2 sm:gap-4 overflow-x-auto ps-4 pe-5 py-2 rounded-2xl bg-white/5 border border-white/10 scrollbar-hide overflow-hidden relative isolate"
+        className="mx-auto w-full max-w-[400px] sm:max-w-none flex sm:justify-center items-center gap-2 sm:gap-3 overflow-x-auto px-4 py-3 rounded-2xl bg-white/5 border border-white/10 scrollbar-hide"
       >
         <button
           onClick={() => setActiveFilter('reel')}
           className={`${
             activeFilter === 'reel'
-              ? 'border-white text-primary'
-              : 'border-transparent text-black/60 hover:border-white/20 hover:text-black dark:text-white/60 dark:hover:text-white'
-          } whitespace-nowrap border-b-2 px-2 py-1.5 text-xs sm:text-sm font-medium shrink-0 rounded-md snap-start focus:outline-white focus-visible:outline-white transition-colors`}
+              ? 'bg-primary text-white shadow-lg shadow-primary/50'
+              : 'bg-white/5 text-white/70 border-2 border-white/20 hover:bg-white/10 hover:border-white/40'
+          } group relative whitespace-nowrap px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm font-bold shrink-0 rounded-xl transition-all hover:scale-105 focus:outline-none`}
         >
           Reels
         </button>
@@ -90,9 +90,9 @@ const CaseStudiesGrid = () => {
           onClick={() => setActiveFilter('podcast')}
           className={`${
             activeFilter === 'podcast'
-              ? 'border-white text-primary'
-              : 'border-transparent text-black/60 hover:border-white/20 hover:text-black dark:text-white/60 dark:hover:text-white'
-          } whitespace-nowrap border-b-2 px-2 py-1.5 text-xs sm:text-sm font-medium shrink-0 rounded-md snap-start focus:outline-white focus-visible:outline-white transition-colors`}
+              ? 'bg-primary text-white shadow-lg shadow-primary/50'
+              : 'bg-white/5 text-white/70 border-2 border-white/20 hover:bg-white/10 hover:border-white/40'
+          } group relative whitespace-nowrap px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm font-bold shrink-0 rounded-xl transition-all hover:scale-105 focus:outline-none`}
         >
           Podcast
         </button>
@@ -100,9 +100,9 @@ const CaseStudiesGrid = () => {
           onClick={() => setActiveFilter('longform')}
           className={`${
             activeFilter === 'longform'
-              ? 'border-white text-primary'
-              : 'border-transparent text-black/60 hover:border-white/20 hover:text-black dark:text-white/60 dark:hover:text-white'
-          } whitespace-nowrap border-b-2 px-2 py-1.5 text-xs sm:text-sm font-medium shrink-0 rounded-md snap-start focus:outline-white focus-visible:outline-white transition-colors`}
+              ? 'bg-primary text-white shadow-lg shadow-primary/50'
+              : 'bg-white/5 text-white/70 border-2 border-white/20 hover:bg-white/10 hover:border-white/40'
+          } group relative whitespace-nowrap px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm font-bold shrink-0 rounded-xl transition-all hover:scale-105 focus:outline-none`}
         >
           Long Form
         </button>
@@ -110,9 +110,9 @@ const CaseStudiesGrid = () => {
           onClick={() => setActiveFilter('courses')}
           className={`${
             activeFilter === 'courses'
-              ? 'border-white text-primary'
-              : 'border-transparent text-black/60 hover:border-white/20 hover:text-black dark:text-white/60 dark:hover:text-white'
-          } whitespace-nowrap border-b-2 px-2 py-1.5 text-xs sm:text-sm font-medium shrink-0 rounded-md snap-start focus:outline-white focus-visible:outline-white transition-colors`}
+              ? 'bg-primary text-white shadow-lg shadow-primary/50'
+              : 'bg-white/5 text-white/70 border-2 border-white/20 hover:bg-white/10 hover:border-white/40'
+          } group relative whitespace-nowrap px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm font-bold shrink-0 rounded-xl transition-all hover:scale-105 focus:outline-none`}
         >
           Courses
         </button>

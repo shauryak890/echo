@@ -27,15 +27,27 @@ const Footer1 = () => (
       {/* Top section: Newsletter and Links */}
       <div className="py-12 sm:py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10 lg:gap-8">
         
-        {/* Newsletter */}
+        {/* Branding + Social */}
         <div className="lg:col-span-2">
           <div className="mb-4">
             <div className="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-600 mb-2">
               EchoPulse
             </div>
-            <p className="text-white/60 text-sm">
+            <p className="text-white/60 text-sm mb-4">
               Amplify your brand with professional content creation
             </p>
+            {/* Social icons */}
+            <div className="flex items-center gap-3">
+              <a 
+                href="https://www.instagram.com/echopulse.in/" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/60 hover:text-white hover:bg-gradient-to-br hover:from-purple-500 hover:via-pink-500 hover:to-orange-500 transition-all hover:scale-110 hover:shadow-lg hover:shadow-pink-500/50"
+                aria-label="Instagram"
+              >
+                <IconInstagram />
+              </a>
+            </div>
           </div>
         </div>
 
@@ -87,10 +99,6 @@ const Footer1 = () => (
         <div className="space-y-3 sm:space-y-4">
           <h3 className="text-base sm:text-lg font-semibold text-white">Contact</h3>
           <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm">
-            <li><a className="text-white/60 hover:text-orange-500 transition-colors flex items-center gap-2 group py-1 min-h-[40px] sm:min-h-0" href="#book-call">
-              <span className="w-0 group-hover:w-2 h-px bg-orange-500 transition-all"></span>
-              Schedule Call
-            </a></li>
             <li><a className="text-white/60 hover:text-orange-500 transition-colors flex items-center gap-2 group py-1 min-h-[40px] sm:min-h-0" href="mailto:hello@echopulse.com">
               <span className="w-0 group-hover:w-2 h-px bg-orange-500 transition-all"></span>
               Email Us
@@ -99,50 +107,23 @@ const Footer1 = () => (
               <span className="w-0 group-hover:w-2 h-px bg-orange-500 transition-all"></span>
               Support
             </a></li>
+            <li><a className="text-white/60 hover:text-orange-500 transition-colors flex items-center gap-2 group py-1 min-h-[40px] sm:min-h-0" href="/terms">
+              <span className="w-0 group-hover:w-2 h-px bg-orange-500 transition-all"></span>
+              Terms of Service
+            </a></li>
+            <li><a className="text-white/60 hover:text-orange-500 transition-colors flex items-center gap-2 group py-1 min-h-[40px] sm:min-h-0" href="/privacy">
+              <span className="w-0 group-hover:w-2 h-px bg-orange-500 transition-all"></span>
+              Privacy Policy
+            </a></li>
           </ul>
         </div>
       </div>
 
-      {/* Social proof bar */}
-      <div className="py-6 sm:py-8 border-y border-white/10">
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 text-center">
-          <div>
-            <div className="text-xl sm:text-2xl font-bold text-orange-500 mb-1">500+</div>
-            <div className="text-[10px] sm:text-xs text-white/50">Happy Clients</div>
-          </div>
-          <div>
-            <div className="text-xl sm:text-2xl font-bold text-orange-500 mb-1">1000+</div>
-            <div className="text-[10px] sm:text-xs text-white/50">Projects Done</div>
-          </div>
-          <div>
-            <div className="text-xl sm:text-2xl font-bold text-orange-500 mb-1">98%</div>
-            <div className="text-[10px] sm:text-xs text-white/50">Satisfaction</div>
-          </div>
-          <div>
-            <div className="text-xl sm:text-2xl font-bold text-orange-500 mb-1">24/7</div>
-            <div className="text-[10px] sm:text-xs text-white/50">Support</div>
-          </div>
-        </div>
-      </div>
-
       {/* Bottom bar */}
-      <div className="py-6 flex flex-col sm:flex-row justify-between items-center gap-4">
-        <p className="text-xs sm:text-sm text-white/60 text-center sm:text-left">
-          © {new Date().getFullYear()} EchoPulse. All rights reserved.
+      <div className="py-6 flex justify-center items-center">
+        <p className="text-xs sm:text-sm text-white/60 text-center">
+          {new Date().getFullYear()} EchoPulse. All rights reserved.
         </p>
-        
-        {/* Social icons with enhanced hover */}
-        <div className="flex items-center gap-3 sm:gap-4">
-          <a 
-            href="https://www.instagram.com/echopulse.in/" 
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-11 h-11 rounded-full bg-white/5 flex items-center justify-center text-white/60 hover:text-white hover:bg-gradient-to-br hover:from-purple-500 hover:via-pink-500 hover:to-orange-500 transition-all hover:scale-110 hover:shadow-lg hover:shadow-pink-500/50 group"
-            aria-label="Instagram"
-          >
-            <IconInstagram />
-          </a>
-        </div>
       </div>
       
       {/* Legal links */}

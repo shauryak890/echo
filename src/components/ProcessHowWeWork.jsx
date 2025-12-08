@@ -69,15 +69,10 @@ const ProcessHowWeWork = () => {
   
   return (
    <section id="how-we-work" className="py-12 sm:py-16 relative overflow-hidden">
-     {/* Animated background */}
-     <div className="absolute inset-0">
-       <div className="absolute top-1/4 right-0 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl"></div>
-       <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-orange-600/5 rounded-full blur-3xl"></div>
-     </div>
      
      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl relative z-10">
        <div className="text-center mb-20">
-         <div className="inline-flex items-center gap-2 bg-orange-500/10 px-4 py-2 rounded-full mb-6 border border-orange-500/20">
+         <div className="inline-flex items-center gap-2 bg-orange-500/10 px-4 py-2 mb-6 border border-orange-500/20">
            <ClockIcon />
            <span className="text-orange-500 font-semibold text-sm">HOW WE WORK</span>
          </div>

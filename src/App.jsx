@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Navbar from './components/Navbar';
 import HeroShowreel2 from './components/HeroShowreel2';
 import CaseStudiesGrid from './components/CaseStudiesGrid';
@@ -12,6 +12,28 @@ import Footer1 from './components/Footer1';
 import GradualBlur from './components/GradualBlur';
 import TermsOfService from './pages/TermsOfService';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+
+// Global mouse glow effect component
+function GlobalMouseGlow() {
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePos({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  return (
+    <div
+      className="pointer-events-none fixed inset-0 z-50 transition duration-300"
+      style={{
+        background: `radial-gradient(600px at ${mousePos.x}px ${mousePos.y}px, rgba(247, 125, 43, 0.08), transparent 80%)`,
+      }}
+    />
+  );
+}
 
 // Home Page Component
 function HomePage() {
@@ -64,9 +86,11 @@ function App() {
   return (
     <Router>
       <div className="bg-background-light dark:bg-background-dark min-h-screen relative overflow-x-hidden">
-        {/* The header blur has been removed */}
-        {/* The footer blur is now barely visible */}
-        <GradualBlur preset="page-footer" strength={0.5} height="4rem" />
+        {/* Global mouse glow effect */}
+        <GlobalMouseGlow />
+        
+        {/* Bottom blur effect - positioned above footer */}
+        <GradualBlur preset="page-footer" strength={0.5} height="4rem" style={{ bottom: '200px' }} />
 
         <Navbar />
         <main className="w-full max-w-full overflow-x-hidden">

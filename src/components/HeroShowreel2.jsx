@@ -24,14 +24,14 @@ const HeroShowreel2 = () => (
           </span>
         </div>
         
-        <h1 className="text-4xl xs:text-5xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tighter text-white leading-[1.1] w-full mb-2 sm:mb-0">
+        <h1 className="text-4xl xs:text-5xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tighter text-white leading-[1.1] w-full pb-3">
           Make content that 
-          <span className="block bg-gradient-to-r from-primary via-orange-400 to-yellow-400 bg-clip-text text-transparent animate-gradient mt-2 sm:mt-2">
+          <span className="block bg-gradient-to-r from-primary via-orange-400 to-yellow-400 bg-clip-text text-transparent animate-gradient mt-2 sm:mt-2 pb-2">
             actually converts
           </span>
         </h1>
         
-        <p className="max-w-lg text-sm sm:text-base lg:text-lg text-white/80 leading-relaxed mx-auto lg:mx-0 px-2 sm:px-0 mt-4">
+        <p className="max-w-lg text-sm sm:text-base lg:text-lg text-white/80 leading-relaxed mx-auto lg:mx-0 px-2 sm:px-0 -mt-2">
           We specialize in <span className="text-primary font-semibold">short-form content</span>, 
           creator coaching, and strategy to help you dominate social media.
         </p>

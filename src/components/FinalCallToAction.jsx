@@ -27,18 +27,9 @@ const FinalCallToAction = ({ onBookCall }) => {
 
   return (
     <section className="py-20 sm:py-32 relative overflow-hidden">
-      {/* Animated background gradients */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-orange-500/10 via-transparent to-orange-600/10 animate-gradient"></div>
-        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-orange-600/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
-      </div>
       
       <div className="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="bg-gradient-to-br from-[#3a322f] to-[#2a2320] rounded-3xl p-8 md:p-16 border border-white/10 shadow-2xl relative overflow-hidden">
-          {/* Decorative elements */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-orange-500/5 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-orange-600/5 rounded-full blur-3xl"></div>
+        <div className="bg-gradient-to-br from-[#3a322f] to-[#2a2320] rounded-3xl p-8 md:p-16 border border-white/10 shadow-2xl relative overflow-hidden transition-all duration-300 hover:shadow-orange-500/20 hover:border-white/20 hover:-translate-y-1">
           
           <div className="relative z-10 text-center">
             {/* Badge */}
@@ -78,15 +69,15 @@ const FinalCallToAction = ({ onBookCall }) => {
             <div className="flex flex-col sm:flex-row justify-center gap-4 animate-slide-up" style={{ animationDelay: '0.4s' }}>
               <button
                 onClick={handleBookCall}
-                className="group inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-orange-500 to-orange-600 px-8 py-4 text-base font-bold text-white shadow-lg transition-all hover:shadow-orange-500/50 hover:-translate-y-1 relative overflow-hidden"
+                className="group relative rounded-xl bg-orange-500 px-8 py-4 text-base font-bold text-white shadow-2xl shadow-orange-500/50 transition-all hover:scale-105 hover:shadow-orange-500/70 overflow-hidden min-h-[48px] flex items-center justify-center gap-2 focus:outline-none hover:border-transparent border-transparent"
               >
                 <span className="relative z-10">Get Started Now</span>
-                <RocketIcon />
-                <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-orange-700 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <span className="relative z-10"><RocketIcon /></span>
+                <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-orange-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
               </button>
               <a
                 href="#our-work"
-                className="inline-flex items-center justify-center gap-2 rounded-lg bg-white/10 px-8 py-4 text-base font-bold text-white border-2 border-white/20 hover:bg-white/20 transition-all"
+                className="group rounded-xl border-2 border-white/20 bg-white/5 px-8 py-4 text-base font-bold text-white hover:text-white backdrop-blur-sm transition-all hover:bg-white/10 hover:border-white/40 hover:scale-105 min-h-[48px] flex items-center justify-center gap-2 focus:outline-none"
               >
                 <span>View Our Work</span>
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

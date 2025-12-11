@@ -42,13 +42,11 @@ export default function ReelPlayer({ hls, mp4, poster, aspectRatio = 'horizontal
     async function setup() {
       // Always try MP4 first for simplicity and compatibility
       if (mp4) {
-        console.log('Loading MP4:', mp4);
         video.src = mp4;
         try {
           await video.play();
-          console.log('MP4 playing successfully');
         } catch (e) {
-          console.log('Autoplay blocked or video error:', e);
+          // Autoplay blocked or video error
         }
         return;
       }
@@ -57,17 +55,15 @@ export default function ReelPlayer({ hls, mp4, poster, aspectRatio = 'horizontal
       if (hls) {
         const canPlayNative = video.canPlayType('application/vnd.apple.mpegurl');
         if (canPlayNative) {
-          console.log('Using native HLS support');
-          video.src = hls;
+                    video.src = hls;
           try {
             await video.play();
           } catch (e) {
-            console.log('HLS playback error:', e);
+            // HLS playback error
           }
         } else {
           try {
-            console.log('Loading hls.js for HLS support');
-            const Hls = (await import('hls.js')).default;
+                        const Hls = (await import('hls.js')).default;
             if (Hls.isSupported()) {
               hlsInstance = new Hls({
                 maxBufferLength: 10,
@@ -78,13 +74,12 @@ export default function ReelPlayer({ hls, mp4, poster, aspectRatio = 'horizontal
               hlsInstance.loadSource(hls);
               hlsInstance.attachMedia(video);
               hlsInstance.on(Hls.Events.MANIFEST_PARSED, () => {
-                console.log('HLS manifest parsed, attempting playback');
-                video.play().catch(() => {});
+                                video.play().catch(() => {});
               });
               hlsRef.current = hlsInstance;
             }
           } catch (e) {
-            console.log('hls.js load error:', e);
+            // hls.js load error
           }
         }
       }

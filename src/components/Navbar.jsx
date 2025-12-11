@@ -53,13 +53,11 @@ const Navbar = () => {
           <a 
             href="/" 
             className={`
-              flex items-center gap-1.5 sm:gap-2 relative z-10 transition-all duration-700
+              flex items-center gap-0.5 relative z-10 transition-all duration-700
               ${isScrolled ? 'opacity-0 scale-0 w-0 overflow-hidden hidden' : 'opacity-100 scale-100'}
             `}
           >
-            <div className="w-6 h-6 sm:w-7 sm:h-7 bg-gradient-to-br from-primary to-orange-600 rounded-lg flex items-center justify-center shadow-lg shadow-primary/50 flex-shrink-0">
-              <span className="text-white font-bold text-xs sm:text-sm">E</span>
-            </div>
+            <img src="/Icon.png" alt="EchoPulse" className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg shadow-lg shadow-primary/50 flex-shrink-0 object-contain" />
             <span className="text-base sm:text-xl text-white font-bold whitespace-nowrap">
               EchoPulse
             </span>

@@ -30,8 +30,11 @@ const Footer1 = () => (
         {/* Branding + Social */}
         <div className="lg:col-span-2">
           <div className="mb-4">
-            <div className="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-600 mb-2">
-              EchoPulse
+            <div className="flex items-center gap-2 mb-2">
+              <img src="/Icon.png" alt="EchoPulse" className="w-8 h-8 rounded-lg object-contain" />
+              <span className="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-600">
+                EchoPulse
+              </span>
             </div>
             <p className="text-white/60 text-sm mb-4">
               Amplify your brand with professional content creation
@@ -46,6 +49,15 @@ const Footer1 = () => (
                 aria-label="Instagram"
               >
                 <IconInstagram />
+              </a>
+              <a 
+                href="https://www.linkedin.com/company/echo-pulse-media/" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/60 hover:text-white hover:bg-[#0077B5] transition-all hover:scale-110 hover:shadow-lg hover:shadow-[#0077B5]/50"
+                aria-label="LinkedIn"
+              >
+                <IconLinkedIn />
               </a>
             </div>
           </div>

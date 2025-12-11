@@ -61,7 +61,7 @@ function HomePage() {
       <HeroShowreel2 />
       <CaseStudiesGrid />
       <ProcessHowWeWork />
-      <FreeResourcesHub1 />
+      {/* <FreeResourcesHub1 /> */}
       {showBooking && <Booking />}
       <FAQ2 />
       <FinalCallToAction onBookCall={() => {

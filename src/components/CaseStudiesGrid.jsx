@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import ReelPlayer from "./ReelPlayer";
 
 const CaseStudiesGrid = () => {
   const [activeFilter, setActiveFilter] = useState('reel');
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [desktopPage, setDesktopPage] = useState(0);
+  const carouselRef = useRef(null);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
 
   const allVideos = [
     {
@@ -20,6 +25,30 @@ const CaseStudiesGrid = () => {
       poster: 'https://res.cloudinary.com/dqqd9rq8s/video/upload/so_0,f_jpg,q_auto,w_600/c5_p3qm4j.jpg',
       hls: 'https://res.cloudinary.com/dqqd9rq8s/video/upload/sp_auto/c5_p3qm4j.m3u8',
       mp4: 'https://res.cloudinary.com/dqqd9rq8s/video/upload/f_mp4,q_auto/c5_p3qm4j.mp4'
+    },
+    {
+      id: 'reel-5',
+      title: 'Reel 5',
+      category: 'reel',
+      poster: 'https://res.cloudinary.com/du6yx2h01/video/upload/so_0,f_jpg,q_auto,w_600/2426_fn_f03ieb.jpg',
+      hls: 'https://res.cloudinary.com/du6yx2h01/video/upload/sp_auto/2426_fn_f03ieb.m3u8',
+      mp4: 'https://res.cloudinary.com/du6yx2h01/video/upload/f_mp4,q_auto/2426_fn_f03ieb.mp4'
+    },
+    {
+      id: 'reel-6',
+      title: 'Reel 6',
+      category: 'reel',
+      poster: 'https://res.cloudinary.com/du6yx2h01/video/upload/so_0,f_jpg,q_auto,w_600/Ep1_Clip18_corrected_xn2szx.jpg',
+      hls: 'https://res.cloudinary.com/du6yx2h01/video/upload/sp_auto/Ep1_Clip18_corrected_xn2szx.m3u8',
+      mp4: 'https://res.cloudinary.com/du6yx2h01/video/upload/f_mp4,q_auto/Ep1_Clip18_corrected_xn2szx.mp4'
+    },
+    {
+      id: 'reel-7',
+      title: 'Reel 7',
+      category: 'reel',
+      poster: 'https://res.cloudinary.com/du6yx2h01/video/upload/so_0,f_jpg,q_auto,w_600/how_i_get_into_sales_1_fs4x89.jpg',
+      hls: 'https://res.cloudinary.com/du6yx2h01/video/upload/sp_auto/how_i_get_into_sales_1_fs4x89.m3u8',
+      mp4: 'https://res.cloudinary.com/du6yx2h01/video/upload/f_mp4,q_auto/how_i_get_into_sales_1_fs4x89.mp4'
     },
     {
       id: 'podcast-1',
@@ -46,24 +75,88 @@ const CaseStudiesGrid = () => {
       mp4: 'https://res.cloudinary.com/dqqd9rq8s/video/upload/f_mp4,q_auto/mian_hlymvc.mp4'
     },
     {
-      id: 'reel-3',
-      title: 'Reel 3',
+      id: 'longform-1',
+      title: 'Long Form 1',
       category: 'longform',
-      poster: 'https://res.cloudinary.com/dqqd9rq8s/video/upload/so_0,f_jpg,q_auto,w_600/_mediamen-26-11-2023-0002_hmkbwn.jpg',
-      hls: 'https://res.cloudinary.com/dqqd9rq8s/video/upload/sp_auto/_mediamen-26-11-2023-0002_hmkbwn.m3u8',
-      mp4: 'https://res.cloudinary.com/dqqd9rq8s/video/upload/f_mp4,q_auto/_mediamen-26-11-2023-0002_hmkbwn.mp4'
+      poster: 'https://res.cloudinary.com/du6yx2h01/video/upload/so_0,f_jpg,q_auto,w_600/Untitled_video_-_Made_with_Clipchamp_2_pog84m.jpg',
+      hls: 'https://res.cloudinary.com/du6yx2h01/video/upload/sp_auto/Untitled_video_-_Made_with_Clipchamp_2_pog84m.m3u8',
+      mp4: 'https://res.cloudinary.com/du6yx2h01/video/upload/f_mp4,q_auto/Untitled_video_-_Made_with_Clipchamp_2_pog84m.mp4'
     },
     {
-      id: 'reel-4',
-      title: 'Reel 4',
+      id: 'longform-2',
+      title: 'Long Form 2',
       category: 'longform',
-      poster: 'https://res.cloudinary.com/dqqd9rq8s/video/upload/so_0,f_jpg,q_auto,w_600/_mediamen-26-11-2023-0001_sycb1h.jpg',
-      hls: 'https://res.cloudinary.com/dqqd9rq8s/video/upload/sp_auto/_mediamen-26-11-2023-0001_sycb1h.m3u8',
-      mp4: 'https://res.cloudinary.com/dqqd9rq8s/video/upload/f_mp4,q_auto/_mediamen-26-11-2023-0001_sycb1h.mp4'
+      poster: 'https://res.cloudinary.com/du6yx2h01/video/upload/so_0,f_jpg,q_auto,w_600/Untitled_video_-_Made_with_Clipchamp_1_1_spvlnf.jpg',
+      hls: 'https://res.cloudinary.com/du6yx2h01/video/upload/sp_auto/Untitled_video_-_Made_with_Clipchamp_1_1_spvlnf.m3u8',
+      mp4: 'https://res.cloudinary.com/du6yx2h01/video/upload/f_mp4,q_auto/Untitled_video_-_Made_with_Clipchamp_1_1_spvlnf.mp4'
     }
   ];
 
   const filteredVideos = allVideos.filter(video => video.category === activeFilter);
+
+  // Items per page: 2 for horizontal content (podcast/courses/longform), 3 for vertical (reels)
+  const itemsPerPage = (activeFilter === 'podcast' || activeFilter === 'courses' || activeFilter === 'longform') ? 2 : 3;
+
+  // Reset slide when filter changes
+  useEffect(() => {
+    setCurrentSlide(0);
+    setDesktopPage(0);
+  }, [activeFilter]);
+
+  // Calculate total pages for desktop carousel
+  const totalDesktopPages = Math.ceil(filteredVideos.length / itemsPerPage);
+
+  // Get videos for current desktop page
+  const getDesktopVideos = () => {
+    const start = desktopPage * itemsPerPage;
+    return filteredVideos.slice(start, start + itemsPerPage);
+  };
+
+  const nextDesktopPage = () => {
+    setDesktopPage(prev => (prev + 1) % totalDesktopPages);
+  };
+
+  const prevDesktopPage = () => {
+    setDesktopPage(prev => (prev - 1 + totalDesktopPages) % totalDesktopPages);
+  };
+
+  // Swipe handlers for mobile carousel
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+    
+    if (isLeftSwipe && currentSlide < filteredVideos.length - 1) {
+      setCurrentSlide(prev => prev + 1);
+    }
+    if (isRightSwipe && currentSlide > 0) {
+      setCurrentSlide(prev => prev - 1);
+    }
+  };
+
+  const goToSlide = (index) => {
+    setCurrentSlide(index);
+  };
+
+  const nextSlide = () => {
+    setCurrentSlide(prev => (prev + 1) % filteredVideos.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide(prev => (prev - 1 + filteredVideos.length) % filteredVideos.length);
+  };
 
   return (
     <section id="our-work" className="mx-auto max-w-7xl px-4 py-12 sm:py-16 lg:py-20 sm:px-6 lg:px-8">
@@ -118,22 +211,104 @@ const CaseStudiesGrid = () => {
         </button>
       </nav>
     </div>
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 auto-rows-max">
-      {filteredVideos.map((v) => (
+
+    {/* Mobile Carousel */}
+    <div className="sm:hidden relative">
+      <div 
+        ref={carouselRef}
+        className="overflow-hidden"
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
+      >
         <div 
-          key={v.id} 
-          className={`group relative overflow-hidden rounded-xl shadow-lg transition-transform duration-300 hover:scale-105 cursor-pointer ${
-            v.category === 'reel' || v.category === 'longform' ? 'lg:col-span-1' : 'lg:col-span-2'
-          }`}
+          className="flex transition-transform duration-300 ease-out"
+          style={{ transform: `translateX(-${currentSlide * 100}%)` }}
         >
-          <ReelPlayer 
-            hls={v.hls} 
-            mp4={v.mp4} 
-            poster={v.poster} 
-            aspectRatio={v.category === 'reel' || v.category === 'longform' ? 'vertical' : 'horizontal'}
-          />
+          {filteredVideos.map((v) => (
+            <div 
+              key={v.id} 
+              className="w-full flex-shrink-0 px-2"
+            >
+              <div className="relative overflow-hidden rounded-xl shadow-lg mx-auto max-w-[280px]">
+                <ReelPlayer 
+                  hls={v.hls} 
+                  mp4={v.mp4} 
+                  poster={v.poster} 
+                  aspectRatio={v.category === 'reel' ? 'vertical' : 'horizontal'}
+                />
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
+      </div>
+
+      {/* Navigation Arrows */}
+      <button
+        onClick={prevSlide}
+        className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-black/70 text-white p-2 rounded-r-lg transition-colors"
+        aria-label="Previous slide"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+      <button
+        onClick={nextSlide}
+        className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-black/70 text-white p-2 rounded-l-lg transition-colors"
+        aria-label="Next slide"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+
+    {/* Desktop/Tablet Carousel - 3 items for vertical, 2 items for horizontal */}
+    <div className="hidden sm:block relative">
+      <div className={`grid gap-4 sm:gap-6 ${
+        activeFilter === 'podcast' || activeFilter === 'courses' || activeFilter === 'longform'
+          ? 'grid-cols-2' 
+          : 'grid-cols-3'
+      }`}>
+        {getDesktopVideos().map((v) => (
+          <div 
+            key={v.id} 
+            className="group relative overflow-hidden rounded-xl shadow-lg transition-transform duration-300 hover:scale-105 cursor-pointer"
+          >
+            <ReelPlayer 
+              hls={v.hls} 
+              mp4={v.mp4} 
+              poster={v.poster} 
+              aspectRatio={v.category === 'reel' ? 'vertical' : 'horizontal'}
+            />
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop Navigation Arrows */}
+      {totalDesktopPages > 1 && (
+        <>
+          <button
+            onClick={prevDesktopPage}
+            className="absolute -left-4 top-1/2 -translate-y-1/2 z-10 bg-black/60 hover:bg-black/80 text-white p-3 rounded-full transition-colors shadow-lg"
+            aria-label="Previous page"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button
+            onClick={nextDesktopPage}
+            className="absolute -right-4 top-1/2 -translate-y-1/2 z-10 bg-black/60 hover:bg-black/80 text-white p-3 rounded-full transition-colors shadow-lg"
+            aria-label="Next page"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </>
+      )}
     </div>
   </section>
 );

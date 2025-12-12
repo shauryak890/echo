@@ -32,7 +32,7 @@ const FAQ2 = () => {
   };
 
   return (
-    <section id="faq" className="py-24 relative overflow-hidden">
+    <section id="faq" className="py-12 sm:py-16 relative overflow-hidden">
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl relative z-10">
         {/* Enhanced header */}

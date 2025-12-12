@@ -27,28 +27,60 @@ const CaseStudiesGrid = () => {
       mp4: 'https://res.cloudinary.com/dqqd9rq8s/video/upload/f_mp4,q_auto/c5_p3qm4j.mp4'
     },
     {
-      id: 'reel-5',
-      title: 'Reel 5',
+      id: 'reel-3',
+      title: 'Reel 3',
       category: 'reel',
-      poster: 'https://res.cloudinary.com/du6yx2h01/video/upload/so_0,f_jpg,q_auto,w_600/2426_fn_f03ieb.jpg',
-      hls: 'https://res.cloudinary.com/du6yx2h01/video/upload/sp_auto/2426_fn_f03ieb.m3u8',
-      mp4: 'https://res.cloudinary.com/du6yx2h01/video/upload/f_mp4,q_auto/2426_fn_f03ieb.mp4'
+      poster: 'https://res.cloudinary.com/du6yx2h01/video/upload/so_0,f_jpg,q_auto,w_600/listing_paid_my_rent_2_1_cz4t0p.jpg',
+      hls: 'https://res.cloudinary.com/du6yx2h01/video/upload/sp_auto/listing_paid_my_rent_2_1_cz4t0p.m3u8',
+      mp4: 'https://res.cloudinary.com/du6yx2h01/video/upload/f_mp4,q_auto/listing_paid_my_rent_2_1_cz4t0p.mp4'
     },
     {
-      id: 'reel-6',
-      title: 'Reel 6',
+      id: 'reel-4',
+      title: 'Reel 4',
       category: 'reel',
       poster: 'https://res.cloudinary.com/du6yx2h01/video/upload/so_0,f_jpg,q_auto,w_600/Ep1_Clip18_corrected_xn2szx.jpg',
       hls: 'https://res.cloudinary.com/du6yx2h01/video/upload/sp_auto/Ep1_Clip18_corrected_xn2szx.m3u8',
       mp4: 'https://res.cloudinary.com/du6yx2h01/video/upload/f_mp4,q_auto/Ep1_Clip18_corrected_xn2szx.mp4'
     },
     {
-      id: 'reel-7',
-      title: 'Reel 7',
+      id: 'reel-5',
+      title: 'Reel 5',
       category: 'reel',
       poster: 'https://res.cloudinary.com/du6yx2h01/video/upload/so_0,f_jpg,q_auto,w_600/how_i_get_into_sales_1_fs4x89.jpg',
       hls: 'https://res.cloudinary.com/du6yx2h01/video/upload/sp_auto/how_i_get_into_sales_1_fs4x89.m3u8',
       mp4: 'https://res.cloudinary.com/du6yx2h01/video/upload/f_mp4,q_auto/how_i_get_into_sales_1_fs4x89.mp4'
+    },
+    {
+      id: 'reel-6',
+      title: 'Reel 6',
+      category: 'reel',
+      poster: 'https://res.cloudinary.com/du6yx2h01/video/upload/so_0,f_jpg,q_auto,w_600/Anything_you_start_you_will_suck_at._You_will_be_embarrassing._But_you_will_survive._Then_you_w_pzzst9.jpg',
+      hls: 'https://res.cloudinary.com/du6yx2h01/video/upload/sp_auto/Anything_you_start_you_will_suck_at._You_will_be_embarrassing._But_you_will_survive._Then_you_w_pzzst9.m3u8',
+      mp4: 'https://res.cloudinary.com/du6yx2h01/video/upload/f_mp4,q_auto/Anything_you_start_you_will_suck_at._You_will_be_embarrassing._But_you_will_survive._Then_you_w_pzzst9.mp4'
+    },
+    {
+      id: 'reel-7',
+      title: 'Reel 7',
+      category: 'reel',
+      poster: 'https://res.cloudinary.com/du6yx2h01/video/upload/so_0,f_jpg,q_auto,w_600/2164_fn_1_a5ta5s.jpg',
+      hls: 'https://res.cloudinary.com/du6yx2h01/video/upload/sp_auto/2164_fn_1_a5ta5s.m3u8',
+      mp4: 'https://res.cloudinary.com/du6yx2h01/video/upload/f_mp4,q_auto/2164_fn_1_a5ta5s.mp4'
+    },
+    {
+      id: 'reel-8',
+      title: 'Reel 8',
+      category: 'reel',
+      poster: 'https://res.cloudinary.com/du6yx2h01/video/upload/so_0,f_jpg,q_auto,w_600/2265_fn_v2_1_1_cfomyk.jpg',
+      hls: 'https://res.cloudinary.com/du6yx2h01/video/upload/sp_auto/2265_fn_v2_1_1_cfomyk.m3u8',
+      mp4: 'https://res.cloudinary.com/du6yx2h01/video/upload/f_mp4,q_auto/2265_fn_v2_1_1_cfomyk.mp4'
+    },
+    {
+      id: 'reel-9',
+      title: 'Reel 9',
+      category: 'reel',
+      poster: 'https://res.cloudinary.com/du6yx2h01/video/upload/so_0,f_jpg,q_auto,w_600/2426_fn_f03ieb.jpg',
+      hls: 'https://res.cloudinary.com/du6yx2h01/video/upload/sp_auto/2426_fn_f03ieb.m3u8',
+      mp4: 'https://res.cloudinary.com/du6yx2h01/video/upload/f_mp4,q_auto/2426_fn_f03ieb.mp4'
     },
     {
       id: 'podcast-1',
@@ -73,6 +105,14 @@ const CaseStudiesGrid = () => {
       poster: 'https://res.cloudinary.com/dqqd9rq8s/video/upload/so_0,f_jpg,q_auto,w_600/mian_hlymvc.jpg',
       hls: 'https://res.cloudinary.com/dqqd9rq8s/video/upload/sp_auto/mian_hlymvc.m3u8',
       mp4: 'https://res.cloudinary.com/dqqd9rq8s/video/upload/f_mp4,q_auto/mian_hlymvc.mp4'
+    },
+    {
+      id: 'courses-2',
+      title: 'VSL Course',
+      category: 'courses',
+      poster: 'https://res.cloudinary.com/du6yx2h01/video/upload/so_0,f_jpg,q_auto,w_600/vsl1_1_aagaus.jpg',
+      hls: 'https://res.cloudinary.com/du6yx2h01/video/upload/sp_auto/vsl1_1_aagaus.m3u8',
+      mp4: 'https://res.cloudinary.com/du6yx2h01/video/upload/f_mp4,q_auto/vsl1_1_aagaus.mp4'
     },
     {
       id: 'longform-1',
@@ -159,7 +199,7 @@ const CaseStudiesGrid = () => {
   };
 
   return (
-    <section id="our-work" className="mx-auto max-w-7xl px-4 py-12 sm:py-16 lg:py-20 sm:px-6 lg:px-8">
+    <section id="our-work" className="mx-auto max-w-7xl px-4 py-8 sm:py-10 lg:py-12 sm:px-6 lg:px-8">
     <div className="mb-8 sm:mb-12 text-center px-2">
       <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-black dark:text-white">Our Work</h2>
     </div>

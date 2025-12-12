@@ -31,23 +31,22 @@ const HeroShowreel2 = () => {
   };
 
   return (
-  <main className="relative z-10 flex min-h-screen flex-col items-center justify-center px-4 py-32 sm:px-6 sm:py-40 lg:px-8 overflow-hidden">
+  <main className="relative z-10 flex min-h-screen flex-col items-center justify-center px-4 pt-24 pb-20 sm:px-6 sm:pt-28 sm:pb-24 lg:pt-40 lg:pb-24 lg:px-8 overflow-hidden">
     {/* Animated gradient background */}
     <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-purple-500/10 animate-pulse-slow" />
     <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(247,125,43,0.1),transparent_50%)]" />
     
     <div className="grid w-full max-w-7xl grid-cols-1 gap-8 sm:gap-12 lg:gap-20 lg:grid-cols-2 lg:items-center relative z-10">
-      <div className="flex flex-col items-center lg:items-start gap-6 sm:gap-8 text-center lg:text-left w-full">
+      <div className="flex flex-col items-center lg:items-start gap-6 sm:gap-8 text-center lg:text-left w-full lg:-ml-8">
         <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tighter text-white leading-[1.1] w-full pb-3">
-          <span className="block">Make content that</span>
+          <span className="block whitespace-nowrap">Elevate Your Brand's</span>
           <span className="block bg-gradient-to-r from-primary via-orange-400 to-yellow-400 bg-clip-text text-transparent animate-gradient mt-2 sm:mt-2 pb-2">
-            actually converts
+            Digital Presence
           </span>
         </h1>
         
-        <p className="max-w-lg text-sm sm:text-base lg:text-lg text-white/80 leading-relaxed mx-auto lg:mx-0 px-2 sm:px-0 -mt-9">
-          We specialize in <span className="text-primary font-semibold">short-form content</span>, 
-          creator coaching, and strategy to help you dominate social media.
+        <p className="max-w-lg text-sm sm:text-base lg:text-lg text-white/80 leading-relaxed mx-auto px-2 sm:px-0 -mt-9">
+          In a noisy digital world, clarity wins. We help you tell your story with precision, quality, and consistency across every platform.
         </p>
         
         <div className="flex justify-center w-full px-2 sm:px-0 mt-2">
@@ -61,7 +60,7 @@ const HeroShowreel2 = () => {
         </div>
       </div>
       
-      <div className="parallax-container w-full relative mt-16 sm:mt-20 lg:mt-0">
+      <div className="parallax-container w-full relative mt-6 sm:mt-20 lg:mt-0">
         <div className="absolute -inset-4 bg-gradient-to-r from-primary/30 to-purple-500/30 rounded-3xl blur-3xl opacity-50 animate-pulse-slow" />
         <div className="aspect-video w-full overflow-hidden rounded-xl sm:rounded-2xl glass-card glow parallax relative border border-white/10 shadow-2xl">
           <video 

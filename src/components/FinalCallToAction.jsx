@@ -39,29 +39,35 @@ const FinalCallToAction = ({ onBookCall }) => {
             </div>
             
             {/* Heading */}
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white mb-6 animate-slide-up" style={{ animationDelay: '0.1s' }}>
-              Ready to build <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-600">authority</span>?
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-4 animate-slide-up" style={{ animationDelay: '0.1s' }}>
+              You Have a Business to Run.
+            </h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-600 mb-6 animate-slide-up" style={{ animationDelay: '0.15s' }}>
+              Let Us Handle Your Brand.
             </h2>
             
             {/* Description */}
-            <p className="text-lg text-white/70 max-w-2xl mx-auto mb-10 animate-slide-up" style={{ animationDelay: '0.2s' }}>
-              Let's turn your expertise into influence. We help you create compelling
-              content that establishes you as a thought leader in your industry.
+            <p className="text-lg text-white/70 max-w-2xl mx-auto mb-8 animate-slide-up" style={{ animationDelay: '0.2s' }}>
+              Get a dedicated team of strategists and editors for less than the cost of one in-house hire.
             </p>
             
-            {/* Benefits list */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto mb-10 animate-slide-up" style={{ animationDelay: '0.3s' }}>
-              <div className="flex items-center gap-2 bg-white/5 px-4 py-3 rounded-lg border border-white/10">
-                <CheckIcon />
-                <span className="text-white/80 text-sm">Free Consultation</span>
+            {/* Benefits list - inline style */}
+            <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 mb-10 animate-slide-up" style={{ animationDelay: '0.3s' }}>
+              <div className="flex items-center gap-2">
+                <span className="text-orange-500"><CheckIcon /></span>
+                <span className="text-white/80 text-sm">Dedicated Team</span>
               </div>
-              <div className="flex items-center gap-2 bg-white/5 px-4 py-3 rounded-lg border border-white/10">
-                <CheckIcon />
+              <div className="flex items-center gap-2">
+                <span className="text-orange-500"><CheckIcon /></span>
                 <span className="text-white/80 text-sm">No Long-term Contracts</span>
               </div>
-              <div className="flex items-center gap-2 bg-white/5 px-4 py-3 rounded-lg border border-white/10">
-                <CheckIcon />
-                <span className="text-white/80 text-sm">Money-back Guarantee</span>
+              <div className="flex items-center gap-2">
+                <span className="text-orange-500"><CheckIcon /></span>
+                <span className="text-white/80 text-sm">Free 45-Min Blueprint Call</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-orange-500"><CheckIcon /></span>
+                <span className="text-white/80 text-sm">Fast Turnaround</span>
               </div>
             </div>
             
@@ -71,19 +77,10 @@ const FinalCallToAction = ({ onBookCall }) => {
                 onClick={handleBookCall}
                 className="group relative rounded-xl bg-orange-500 px-8 py-4 text-base font-bold text-white shadow-2xl shadow-orange-500/50 transition-all hover:scale-105 hover:shadow-orange-500/70 overflow-hidden min-h-[48px] flex items-center justify-center gap-2 focus:outline-none hover:border-transparent border-transparent"
               >
-                <span className="relative z-10">Get Started Now</span>
+                <span className="relative z-10">Book a Call</span>
                 <span className="relative z-10"><RocketIcon /></span>
                 <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-orange-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
               </button>
-              <a
-                href="#our-work"
-                className="group rounded-xl border-2 border-white/20 bg-white/5 px-8 py-4 text-base font-bold text-white hover:text-white backdrop-blur-sm transition-all hover:bg-white/10 hover:border-white/40 hover:scale-105 min-h-[48px] flex items-center justify-center gap-2 focus:outline-none"
-              >
-                <span>View Our Work</span>
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </a>
             </div>
             
             {/* Social proof */}

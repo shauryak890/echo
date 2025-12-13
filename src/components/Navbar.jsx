@@ -23,22 +23,22 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Mobile: Logo in left corner */}
+      {/* Mobile/Tablet: Logo in left corner */}
       <a 
         href="/" 
         className={`
-          md:hidden fixed left-4 top-4 z-50 transition-all duration-700
+          xl:hidden fixed left-4 top-4 z-50 transition-all duration-700
           ${isScrolled ? 'opacity-0 scale-0 pointer-events-none' : 'opacity-100 scale-100'}
         `}
       >
-        <img src="/Icon.png" alt="EchoPulse" className="w-10 h-10 rounded-lg shadow-lg shadow-primary/50 object-contain" />
+        <img src="/Icon.png" alt="EchoPulse" className="w-10 h-10 rounded-lg object-contain" />
       </a>
 
-      {/* Mobile: Hamburger in right corner */}
+      {/* Mobile/Tablet: Hamburger in right corner */}
       <button 
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         className={`
-          md:hidden fixed right-4 top-4 z-50 text-white p-2 rounded-lg hover:bg-white/10 transition-all duration-700 min-w-[44px] min-h-[44px] flex items-center justify-center
+          xl:hidden fixed right-4 top-4 z-50 text-white p-2 rounded-lg hover:bg-white/10 transition-all duration-700 min-w-[44px] min-h-[44px] flex items-center justify-center
           ${isScrolled ? 'opacity-0 scale-0 pointer-events-none' : 'opacity-100 scale-100'}
         `}
         aria-label="Toggle menu"
@@ -63,7 +63,7 @@ const Navbar = () => {
       {/* Mobile: Scrolled CTA */}
       <div 
         className={`
-          md:hidden fixed left-1/2 -translate-x-1/2 top-2 z-50 transition-all duration-700
+          xl:hidden fixed left-1/2 -translate-x-1/2 top-2 z-50 transition-all duration-700
           ${isScrolled ? 'opacity-100 scale-100' : 'opacity-0 scale-0 pointer-events-none'}
         `}
       >
@@ -84,7 +84,7 @@ const Navbar = () => {
       {/* Desktop Navigation */}
       <nav 
         className={`
-          hidden md:block fixed left-1/2 -translate-x-1/2 z-50 transition-all duration-700 ease-out
+          hidden xl:block fixed left-1/2 -translate-x-1/2 z-50 transition-all duration-700 ease-out
           ${isScrolled ? 'top-6' : 'top-6'}
         `}
       >
@@ -104,7 +104,7 @@ const Navbar = () => {
               ${isScrolled ? 'opacity-0 scale-0 w-0 overflow-hidden' : 'opacity-100 scale-100'}
             `}
           >
-            <img src="/Icon.png" alt="EchoPulse" className="w-10 h-10 rounded-lg shadow-lg shadow-primary/50 object-contain" />
+            <img src="/Icon.png" alt="EchoPulse" className="w-10 h-10 rounded-lg object-contain" />
           </a>
           
           {/* Nav Links */}
@@ -157,7 +157,7 @@ const Navbar = () => {
 
       {/* Mobile Menu Dropdown */}
       <div className={`
-        fixed inset-x-3 top-16 z-40 md:hidden transition-all duration-500 ease-out
+        fixed inset-x-3 top-16 z-40 xl:hidden transition-all duration-500 ease-out
         ${isMobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}
       `}>
         <div className="rounded-2xl bg-gradient-to-br from-[#2a2320]/95 to-[#1a1410]/95 backdrop-blur-xl border border-white/10 shadow-2xl overflow-hidden">
@@ -193,7 +193,7 @@ const Navbar = () => {
       {/* Overlay when mobile menu is open */}
       {isMobileMenuOpen && (
         <div 
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-30 md:hidden"
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-30 xl:hidden"
           onClick={() => setIsMobileMenuOpen(false)}
         />
       )}

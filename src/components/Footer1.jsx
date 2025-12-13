@@ -67,44 +67,26 @@ const Footer1 = () => (
         <div className="space-y-3 sm:space-y-4">
           <h3 className="text-base sm:text-lg font-semibold text-white">Quick Links</h3>
           <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm">
-            <li><a className="text-white/60 hover:text-orange-500 transition-colors flex items-center gap-2 group py-1 min-h-[40px] sm:min-h-0" href="#services">
-              <span className="w-0 group-hover:w-2 h-px bg-orange-500 transition-all"></span>
-              Services
-            </a></li>
             <li><a className="text-white/60 hover:text-orange-500 transition-colors flex items-center gap-2 group py-1 min-h-[40px] sm:min-h-0" href="#our-work">
               <span className="w-0 group-hover:w-2 h-px bg-orange-500 transition-all"></span>
               Our Work
             </a></li>
-            <li><a className="text-white/60 hover:text-orange-500 transition-colors flex items-center gap-2 group py-1 min-h-[40px] sm:min-h-0" href="#packages">
+            <li><a className="text-white/60 hover:text-orange-500 transition-colors flex items-center gap-2 group py-1 min-h-[40px] sm:min-h-0" href="#how-we-work">
               <span className="w-0 group-hover:w-2 h-px bg-orange-500 transition-all"></span>
-              Packages
+              How We Work
+            </a></li>
+            <li><a className="text-white/60 hover:text-orange-500 transition-colors flex items-center gap-2 group py-1 min-h-[40px] sm:min-h-0" href="#resources">
+              <span className="w-0 group-hover:w-2 h-px bg-orange-500 transition-all"></span>
+              Resources
             </a></li>
             <li><a className="text-white/60 hover:text-orange-500 transition-colors flex items-center gap-2 group py-1 min-h-[40px] sm:min-h-0" href="#faq">
               <span className="w-0 group-hover:w-2 h-px bg-orange-500 transition-all"></span>
               FAQ
             </a></li>
-          </ul>
-        </div>
-
-        <div className="space-y-3 sm:space-y-4">
-          <h3 className="text-base sm:text-lg font-semibold text-white">Get Started</h3>
-          <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm">
-            <li><a className="text-white/60 hover:text-orange-500 transition-colors flex items-center gap-2 group py-1 min-h-[40px] sm:min-h-0" href="#book-call">
+            <li><button onClick={() => { const bookingHandler = window.bookCalendly; if (bookingHandler) bookingHandler(); }} className="text-white/60 hover:text-orange-500 transition-colors flex items-center gap-2 group py-1 min-h-[40px] sm:min-h-0 bg-transparent border-none cursor-pointer text-xs sm:text-sm p-0 text-left">
               <span className="w-0 group-hover:w-2 h-px bg-orange-500 transition-all"></span>
               Book a Call
-            </a></li>
-            <li><a className="text-white/60 hover:text-orange-500 transition-colors flex items-center gap-2 group py-1 min-h-[40px] sm:min-h-0" href="#services">
-              <span className="w-0 group-hover:w-2 h-px bg-orange-500 transition-all"></span>
-              Podcast Editing
-            </a></li>
-            <li><a className="text-white/60 hover:text-orange-500 transition-colors flex items-center gap-2 group py-1 min-h-[40px] sm:min-h-0" href="#packages">
-              <span className="w-0 group-hover:w-2 h-px bg-orange-500 transition-all"></span>
-              Social Media
-            </a></li>
-            <li><a className="text-white/60 hover:text-orange-500 transition-colors flex items-center gap-2 group py-1 min-h-[40px] sm:min-h-0" href="#our-work">
-              <span className="w-0 group-hover:w-2 h-px bg-orange-500 transition-all"></span>
-              View Portfolio
-            </a></li>
+            </button></li>
           </ul>
         </div>
 

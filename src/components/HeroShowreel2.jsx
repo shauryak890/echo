@@ -36,16 +36,16 @@ const HeroShowreel2 = () => {
     <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-purple-500/10 animate-pulse-slow" />
     <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(247,125,43,0.1),transparent_50%)]" />
     
-    <div className="grid w-full max-w-7xl grid-cols-1 gap-8 sm:gap-12 lg:gap-20 lg:grid-cols-2 lg:items-center relative z-10">
-      <div className="flex flex-col items-center lg:items-start gap-6 sm:gap-8 text-center lg:text-left w-full lg:-ml-8">
-        <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tighter text-white leading-[1.1] w-full pb-3">
+    <div className="grid w-full max-w-7xl grid-cols-1 gap-8 sm:gap-12 xl:gap-20 xl:grid-cols-2 xl:items-center relative z-10">
+      <div className="flex flex-col items-center xl:items-start gap-6 sm:gap-8 text-center xl:text-left w-full xl:-ml-8">
+        <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-5xl lg:text-5xl xl:text-6xl font-black tracking-tighter text-white leading-[1.1] w-full pb-3">
           <span className="block whitespace-nowrap">Elevate Your Brand's</span>
           <span className="block bg-gradient-to-r from-primary via-orange-400 to-yellow-400 bg-clip-text text-transparent animate-gradient mt-2 sm:mt-2 pb-2">
             Digital Presence
           </span>
         </h1>
         
-        <p className="max-w-lg text-sm sm:text-base lg:text-lg text-white/80 leading-relaxed mx-auto px-2 sm:px-0 -mt-9">
+        <p className="max-w-lg text-sm sm:text-base lg:text-lg xl:text-xl text-white/80 leading-relaxed xl:mx-0 mx-auto px-2 sm:px-0 -mt-6">
           In a noisy digital world, clarity wins. We help you tell your story with precision, quality, and consistency across every platform.
         </p>
         

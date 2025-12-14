@@ -25,7 +25,7 @@ const Booking = () => {
         {/* Calendly Inline Widget */}
         <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-4 sm:p-6 lg:p-8 shadow-2xl">
           <InlineWidget
-            url="https://calendly.com/shauryakashyap1278/new-meeting"
+            url="https://calendly.com/echopulsemedia/new-meeting"
             styles={{
               height: '700px',
               minWidth: '100%'

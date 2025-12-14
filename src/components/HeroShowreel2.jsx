@@ -49,7 +49,7 @@ const HeroShowreel2 = () => {
           In a noisy digital world, clarity wins. We help you tell your story with precision, quality, and consistency across every platform.
         </p>
         
-        <div className="flex justify-center w-full px-2 sm:px-0 mt-2 xl:-ml-16">
+        <div className="flex justify-center xl:justify-start w-full px-2 sm:px-0 mt-2">
           <a 
             href="#our-work"
             className="group relative rounded-xl bg-primary px-8 sm:px-10 py-3 sm:py-4 text-base sm:text-lg font-bold text-white hover:text-white visited:text-white shadow-2xl shadow-primary/50 transition-all hover:scale-105 hover:shadow-primary/70 overflow-hidden min-h-[48px] flex items-center justify-center focus:outline-white focus-visible:outline-white focus-visible:outline-2 focus-visible:outline-offset-2"

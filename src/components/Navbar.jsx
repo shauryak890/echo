@@ -1,15 +1,32 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const navLinks = [
   { name: "Our Work", href: "#our-work" },
   { name: "How We Work", href: "#how-we-work" },
-  { name: "Resources", href: "#resources" },
+  { name: "Blogs", href: "/blogs" },
   { name: "FAQ", href: "#faq" },
 ];
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleNavClick = (e, href) => {
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      if (location.pathname !== '/') {
+        navigate('/' + href);
+      } else {
+        const element = document.querySelector(href);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -116,6 +133,7 @@ const Navbar = () => {
               <a 
                 key={link.name} 
                 href={link.href} 
+                onClick={(e) => handleNavClick(e, link.href)}
                 className="text-white/70 hover:text-white transition-colors duration-300 px-1 lg:px-2 relative group/link whitespace-nowrap text-sm lg:text-base inline-block pb-1"
               >
                 <span className="relative z-10">{link.name}</span>
@@ -168,7 +186,10 @@ const Navbar = () => {
               <a 
                 key={link.name}
                 href={link.href}
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={(e) => {
+                  setIsMobileMenuOpen(false);
+                  handleNavClick(e, link.href);
+                }}
                 className="block text-white/70 hover:text-white transition-all duration-300 py-3 px-4 rounded-lg hover:bg-white/5 border border-transparent hover:border-white/10 min-h-[48px] flex items-center"
                 style={{ animationDelay: `${index * 50}ms` }}
               >

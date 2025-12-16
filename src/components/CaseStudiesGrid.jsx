@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import ReelPlayer from "./ReelPlayer";
+import VideoModal from "./VideoModal";
 
 const CaseStudiesGrid = () => {
   const [activeFilter, setActiveFilter] = useState('reel');
@@ -8,6 +9,17 @@ const CaseStudiesGrid = () => {
   const carouselRef = useRef(null);
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalVideoIndex, setModalVideoIndex] = useState(0);
+
+  const openModal = (index) => {
+    setModalVideoIndex(index);
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
 
   const allVideos = [
     {
@@ -265,18 +277,26 @@ const CaseStudiesGrid = () => {
           className="flex transition-transform duration-300 ease-out"
           style={{ transform: `translateX(-${currentSlide * 100}%)` }}
         >
-          {filteredVideos.map((v) => (
+          {filteredVideos.map((v, index) => (
             <div 
               key={v.id} 
               className="w-full flex-shrink-0 px-2"
+              onClick={() => openModal(index)}
             >
-              <div className="relative overflow-hidden rounded-xl shadow-lg mx-auto max-w-[280px]">
+              <div className="relative overflow-hidden rounded-xl shadow-lg mx-auto max-w-[280px] cursor-pointer">
                 <ReelPlayer 
                   hls={v.hls} 
                   mp4={v.mp4} 
                   poster={v.poster} 
                   aspectRatio={v.category === 'reel' ? 'vertical' : 'horizontal'}
                 />
+                <div className="absolute inset-0 bg-black/0 hover:bg-black/20 transition-colors flex items-center justify-center opacity-0 hover:opacity-100">
+                  <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                    <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M21 3H3a2 2 0 00-2 2v14a2 2 0 002 2h18a2 2 0 002-2V5a2 2 0 00-2-2zm-9 13l-5-3 5-3v6z"/>
+                    </svg>
+                  </div>
+                </div>
               </div>
             </div>
           ))}
@@ -311,19 +331,30 @@ const CaseStudiesGrid = () => {
           ? 'grid-cols-2' 
           : 'grid-cols-3'
       }`}>
-        {getDesktopVideos().map((v) => (
-          <div 
-            key={v.id} 
-            className="group relative overflow-hidden rounded-xl shadow-lg transition-transform duration-300 hover:scale-105 cursor-pointer"
-          >
-            <ReelPlayer 
-              hls={v.hls} 
-              mp4={v.mp4} 
-              poster={v.poster} 
-              aspectRatio={v.category === 'reel' ? 'vertical' : 'horizontal'}
-            />
-          </div>
-        ))}
+        {getDesktopVideos().map((v, index) => {
+          const globalIndex = desktopPage * itemsPerPage + index;
+          return (
+            <div 
+              key={v.id} 
+              className="group relative overflow-hidden rounded-xl shadow-lg transition-transform duration-300 hover:scale-105 cursor-pointer"
+              onClick={() => openModal(globalIndex)}
+            >
+              <ReelPlayer 
+                hls={v.hls} 
+                mp4={v.mp4} 
+                poster={v.poster} 
+                aspectRatio={v.category === 'reel' ? 'vertical' : 'horizontal'}
+              />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+                <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                  <svg className="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M21 3H3a2 2 0 00-2 2v14a2 2 0 002 2h18a2 2 0 002-2V5a2 2 0 00-2-2zm-9 13l-5-3 5-3v6z"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </div>
 
       {/* Desktop Navigation Arrows */}
@@ -350,6 +381,14 @@ const CaseStudiesGrid = () => {
         </>
       )}
     </div>
+
+      {/* Video Modal */}
+      <VideoModal
+        videos={filteredVideos}
+        initialIndex={modalVideoIndex}
+        isOpen={modalOpen}
+        onClose={closeModal}
+      />
   </section>
 );
 };

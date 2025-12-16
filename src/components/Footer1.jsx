@@ -42,7 +42,7 @@ const Footer1 = () => (
             {/* Social icons */}
             <div className="flex items-center gap-3">
               <a 
-                href="https://www.instagram.com/echopulse.in/" 
+                href="https://www.instagram.com/echopulse.media?igsh=bnY4Z2Zza2k4Njgw" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/60 hover:text-white hover:bg-gradient-to-br hover:from-purple-500 hover:via-pink-500 hover:to-orange-500 transition-all hover:scale-110 hover:shadow-lg hover:shadow-pink-500/50"

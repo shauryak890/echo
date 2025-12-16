@@ -10,6 +10,7 @@ const HeroShowreel2 = () => {
   const videoRef = useRef(null);
   const [isMuted, setIsMuted] = useState(true);
   const [hasEnded, setHasEnded] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
 
   const toggleMute = () => {
     if (videoRef.current) {
@@ -30,14 +31,33 @@ const HeroShowreel2 = () => {
     setHasEnded(true);
   };
 
+  const togglePlayPause = () => {
+    if (videoRef.current) {
+      if (videoRef.current.paused) {
+        videoRef.current.play();
+        setIsPaused(false);
+      } else {
+        videoRef.current.pause();
+        setIsPaused(true);
+      }
+    }
+  };
+
   return (
   <main className="relative z-10 flex min-h-screen flex-col items-center justify-center px-4 pt-24 pb-20 sm:px-6 sm:pt-28 sm:pb-24 lg:pt-40 lg:pb-24 lg:px-8 overflow-hidden">
+    <style>{`
+      @media (min-width: 1280px) {
+        .hero-text-desktop {
+          transform: translateY(-2rem);
+        }
+      }
+    `}</style>
     {/* Animated gradient background */}
     <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-purple-500/10 animate-pulse-slow" />
     <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(247,125,43,0.1),transparent_50%)]" />
     
     <div className="grid w-full max-w-7xl grid-cols-1 gap-8 sm:gap-12 xl:gap-20 xl:grid-cols-2 xl:items-center relative z-10">
-      <div className="flex flex-col items-center xl:items-start gap-6 sm:gap-8 text-center xl:text-left w-full xl:-ml-8">
+      <div className="hero-text-desktop flex flex-col items-center xl:items-start gap-6 sm:gap-8 text-center xl:text-left w-full xl:-ml-8">
         <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-5xl lg:text-5xl xl:text-6xl font-black tracking-tighter text-white leading-[1.1] w-full pb-3">
           <span className="block whitespace-nowrap">Elevate Your Brand's</span>
           <span className="block bg-gradient-to-r from-primary via-orange-400 to-yellow-400 bg-clip-text text-transparent animate-gradient mt-2 sm:mt-2 pb-2">
@@ -65,8 +85,8 @@ const HeroShowreel2 = () => {
         <div className="aspect-video w-full overflow-hidden rounded-xl sm:rounded-2xl glass-card glow parallax relative border border-white/10 shadow-2xl">
           <video 
             ref={videoRef}
-            src="https://res.cloudinary.com/du6yx2h01/video/upload/f_mp4,q_auto/Main_3_jyv72n.mp4"
-            poster="https://res.cloudinary.com/du6yx2h01/video/upload/so_0,f_jpg,q_auto,w_1200/Main_3_jyv72n.jpg"
+            src="https://res.cloudinary.com/du6yx2h01/video/upload/f_mp4,q_auto/Main_3_rgo5mf.mp4"
+            poster="https://res.cloudinary.com/du6yx2h01/video/upload/so_0,f_jpg,q_auto,w_1200/Main_3_rgo5mf.jpg"
             className="h-full w-full object-cover"
             autoPlay
             muted
@@ -76,6 +96,23 @@ const HeroShowreel2 = () => {
           
           {/* Video Controls */}
           <div className="absolute bottom-3 right-3 flex gap-2">
+            {/* Play/Pause Button */}
+            <button
+              onClick={togglePlayPause}
+              className="bg-black/60 hover:bg-black/80 text-white p-2 rounded-full transition-colors backdrop-blur-sm"
+              aria-label={isPaused ? "Play" : "Pause"}
+            >
+              {isPaused ? (
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              ) : (
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              )}
+            </button>
             {/* Mute/Unmute Button */}
             <button
               onClick={toggleMute}

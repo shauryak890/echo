@@ -1,5 +1,5 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useState, useEffect, useRef } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import HeroShowreel2 from './components/HeroShowreel2';
 import CaseStudiesGrid from './components/CaseStudiesGrid';
@@ -12,6 +12,9 @@ import Footer1 from './components/Footer1';
 import GradualBlur from './components/GradualBlur';
 import TermsOfService from './pages/TermsOfService';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import BlogsPage from './pages/BlogsPage';
+import BlogPost from './pages/BlogPost';
+
 
 // Global mouse glow effect component
 function GlobalMouseGlow() {
@@ -38,23 +41,36 @@ function GlobalMouseGlow() {
 // Home Page Component
 function HomePage() {
   const [showBooking, setShowBooking] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleOpenCalendly = () => {
       setShowBooking(true);
       setTimeout(() => {
-        document.getElementById('book-call')?.scrollIntoView({ behavior: 'smooth' });
+        document
+          .getElementById('book-call')
+          ?.scrollIntoView({ behavior: 'smooth' });
       }, 100);
     };
 
-    // Listen for the custom event
     window.addEventListener('openCalendly', handleOpenCalendly);
-    
-    // Cleanup
+
     return () => {
       window.removeEventListener('openCalendly', handleOpenCalendly);
     };
   }, []);
+
+  // Handle hash scroll after navigation
+  useEffect(() => {
+    if (location.hash) {
+      setTimeout(() => {
+        const element = document.querySelector(location.hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  }, [location.hash]);
 
   return (
     <>
@@ -64,19 +80,23 @@ function HomePage() {
       {/* <FreeResourcesHub1 /> */}
       {showBooking && <Booking />}
       <FAQ2 />
-      <FinalCallToAction onBookCall={() => {
-        setShowBooking(true);
-        setTimeout(() => {
-          document.getElementById('book-call')?.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-      }} />
+      <FinalCallToAction
+        onBookCall={() => {
+          setShowBooking(true);
+          setTimeout(() => {
+            document
+              .getElementById('book-call')
+              ?.scrollIntoView({ behavior: 'smooth' });
+          }, 100);
+        }}
+      />
     </>
   );
 }
 
 function App() {
+  // Global booking setup
   useEffect(() => {
-    // Set up global booking function at app level
     window.bookCalendly = () => {
       const event = new CustomEvent('openCalendly');
       window.dispatchEvent(event);
@@ -85,26 +105,47 @@ function App() {
 
   return (
     <Router>
-      <div className="bg-background-light dark:bg-background-dark min-h-screen relative overflow-x-hidden">
-        {/* Global mouse glow effect */}
-        <GlobalMouseGlow />
-        
-        {/* Bottom blur effect - positioned above footer */}
-        <GradualBlur preset="page-footer" strength={0.5} height="4rem" style={{ bottom: '200px' }} />
-
-        <Navbar />
-        <main className="w-full max-w-full overflow-x-hidden">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/terms" element={<TermsOfService />} />
-            <Route path="/privacy" element={<PrivacyPolicy />} />
-          </Routes>
-        </main>
-        <Footer1 />
-      </div>
+      <AppContent />
     </Router>
   );
 }
 
-export default App;
+function AppContent() {
+  const location = useLocation();
+  const isBlogPage = location.pathname.startsWith('/blogs');
 
+  return (
+    <div className="bg-background-light dark:bg-background-dark min-h-screen relative overflow-x-hidden">
+      {/* Global mouse glow effect */}
+      <GlobalMouseGlow />
+
+      {/* Bottom blur effect - only on non-blog pages */}
+      {!isBlogPage && (
+        <GradualBlur
+          preset="page-footer"
+          strength={0.5}
+          height="4rem"
+          style={{ bottom: '200px' }}
+        />
+      )}
+
+      {/* Navbar - only on non-blog pages (blog pages have their own) */}
+      {!isBlogPage && <Navbar />}
+
+      <main className="w-full max-w-full overflow-x-hidden">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/terms" element={<TermsOfService />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/blogs" element={<BlogsPage />} />
+          <Route path="/blogs/:slug" element={<BlogPost />} />
+        </Routes>
+      </main>
+
+      {/* Footer - only on non-blog pages (blog pages have their own) */}
+      {!isBlogPage && <Footer1 />}
+    </div>
+  );
+}
+
+export default App;

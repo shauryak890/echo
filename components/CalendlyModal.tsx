@@ -1,13 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
 import { InlineWidget } from "react-calendly";
 
 export default function CalendlyModal() {
   const [isOpen, setIsOpen] = useState(false);
-  const searchParams = useSearchParams();
-  const router = useRouter();
 
   useEffect(() => {
     const handleOpenCalendly = () => {
@@ -19,13 +16,14 @@ export default function CalendlyModal() {
   }, []);
 
   useEffect(() => {
-    // Check for openCalendly query param
-    if (searchParams.get("openCalendly") === "true") {
+    // Check for openCalendly query param on mount (client-side only)
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("openCalendly") === "true") {
       setIsOpen(true);
       // Clean up the URL without triggering a navigation
-      router.replace("/", { scroll: false });
+      window.history.replaceState({}, "", "/");
     }
-  }, [searchParams, router]);
+  }, []);
 
   useEffect(() => {
     // Set up global booking function

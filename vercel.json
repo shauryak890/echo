@@ -1,0 +1,3 @@
+{
+  "buildCommand": "rm -rf blog-for-echopulse && npm run build"
+}

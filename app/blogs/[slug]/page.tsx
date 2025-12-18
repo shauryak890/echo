@@ -10,6 +10,9 @@ import BlogHeader from "@/components/BlogHeader";
 import BlogCTA from "@/components/BlogCTA";
 import StickyContainer from "@/components/StickyContainer";
 
+// Revalidate every 60 seconds to fetch new content from Sanity
+export const revalidate = 60;
+
 interface TocItem {
   id: string;
   text: string;
@@ -197,7 +200,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           <div className="flex gap-8 items-start">
             {/* Left Column - Table of Contents (Desktop) */}
             <div className="hidden lg:block w-56 shrink-0">
-              <StickyContainer boundaryId="article-container" offsetTop={112} className="max-h-[calc(100vh-8rem)] overflow-y-auto">
+              <StickyContainer boundaryId="article-container" offsetTop={112} className="max-h-[calc(100vh-8rem)] overflow-y-auto scrollbar-hide">
                 {headings.length > 0 && <TableOfContents headings={headings} />}
               </StickyContainer>
             </div>
@@ -305,6 +308,11 @@ export default async function BlogPostPage({ params }: PageProps) {
                   </div>
                 </div>
               )}
+
+              {/* Mobile CTA - shown after article on mobile/tablet */}
+              <div className="lg:hidden mt-10">
+                <BlogCTA />
+              </div>
             </div>
 
             {/* Right Column - CTA (Desktop) */}
@@ -319,43 +327,31 @@ export default async function BlogPostPage({ params }: PageProps) {
 
       {/* More from EchoPulse Section */}
       {relatedBlogs.length > 0 && (
-        <section id="more-articles" className="py-16 bg-gray-50">
+        <section id="more-articles" className="py-16 bg-white">
           <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold text-gray-900 mb-10 text-center">
               More from EchoPulse
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {relatedBlogs.map((relatedBlog) => (
                 <Link
                   key={relatedBlog.slug}
                   href={`/blogs/${relatedBlog.slug}`}
-                  className="group bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-lg transition-all hover:-translate-y-1"
+                  className="group bg-white rounded-2xl border border-gray-200 p-8 hover:shadow-lg transition-all hover:border-gray-300"
                 >
-                  {relatedBlog.mainImage ? (
-                    <Image
-                      src={urlFor(relatedBlog.mainImage).width(600).height(338).fit("crop").url()}
-                      alt={relatedBlog.title}
-                      width={600}
-                      height={338}
-                      className="w-full aspect-video object-cover"
-                    />
-                  ) : (
-                    <div className="w-full aspect-video bg-gradient-to-br from-orange-100 to-orange-50" />
+                  {relatedBlog.category && (
+                    <span className="text-sm font-semibold text-orange-500 uppercase tracking-wider">
+                      {relatedBlog.category}
+                    </span>
                   )}
-                  <div className="p-4">
-                    {relatedBlog.publishedAt && (
-                      <span className="text-xs text-gray-500">
-                        {new Date(relatedBlog.publishedAt).toLocaleDateString("en-US", {
-                          month: "short",
-                          day: "numeric",
-                          year: "numeric",
-                        })}
-                      </span>
-                    )}
-                    <h3 className="text-sm font-semibold text-gray-900 mt-1 group-hover:text-orange-500 transition-colors line-clamp-2">
-                      {relatedBlog.title}
-                    </h3>
-                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mt-3 mb-4 group-hover:text-orange-500 transition-colors line-clamp-2">
+                    {relatedBlog.title}
+                  </h3>
+                  {relatedBlog.excerpt && (
+                    <p className="text-base text-gray-600 line-clamp-2 leading-relaxed">
+                      {relatedBlog.excerpt}
+                    </p>
+                  )}
                 </Link>
               ))}
             </div>

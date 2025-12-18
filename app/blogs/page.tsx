@@ -3,6 +3,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { sanityClient, urlFor, BLOGS_QUERY, type BlogPost } from "@/lib/sanity";
 
+// Revalidate every 60 seconds to fetch new content from Sanity
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: "Blog - Insights & Resources | EchoPulse",
   description: "Expert tips, industry insights, and strategies to help you elevate your brand's digital presence. Read our latest articles on content creation and social media.",
@@ -26,46 +29,52 @@ function BlogCard({ blog }: { blog: BlogPost }) {
   return (
     <Link
       href={`/blogs/${blog.slug}`}
-      className="group relative bg-white rounded-2xl border border-gray-200 overflow-hidden transition-all duration-300 hover:border-gray-300 hover:-translate-y-1 hover:shadow-lg"
+      className="group block"
     >
-      {blog.mainImage ? (
-        <Image
-          src={urlFor(blog.mainImage).width(1200).height(675).fit("crop").url()}
-          alt={blog.title}
-          width={1200}
-          height={675}
-          className="aspect-video w-full object-cover transition-transform duration-500 group-hover:scale-105"
-        />
-      ) : (
-        <div className="aspect-video bg-gradient-to-br from-orange-100 to-orange-50" />
-      )}
-      <div className="p-6">
-        {blog.publishedAt && (
-          <span className="text-xs text-orange-500 font-semibold uppercase tracking-wider">
-            {new Date(blog.publishedAt).toLocaleDateString("en-US", {
-              month: "long",
-              day: "numeric",
-              year: "numeric",
-            })}
+      {/* Image */}
+      <div className="relative overflow-hidden rounded-lg mb-4">
+        {blog.mainImage ? (
+          <Image
+            src={urlFor(blog.mainImage).width(600).height(400).fit("crop").url()}
+            alt={blog.title}
+            width={600}
+            height={400}
+            className="aspect-[3/2] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        ) : (
+          <div className="aspect-[3/2] bg-gradient-to-br from-orange-100 to-orange-50 rounded-lg" />
+        )}
+      </div>
+
+      {/* Category & Author */}
+      <div className="flex items-center gap-3 mb-2">
+        {blog.category && (
+          <span className="text-xs font-medium text-orange-500 bg-orange-50 px-2 py-1 rounded">
+            {blog.category}
           </span>
         )}
-        <h3 className="text-xl font-bold text-gray-900 mt-2 mb-3 group-hover:text-orange-500 transition-colors line-clamp-2">
-          {blog.title}
-        </h3>
-        {blog.excerpt && (
-          <p className="text-gray-600 text-sm line-clamp-3">{blog.excerpt}</p>
-        )}
-        <div className="mt-4 flex items-center gap-2 text-orange-500 text-sm font-medium">
-          <span>Read More</span>
-          <svg
-            className="w-4 h-4 transition-transform group-hover:translate-x-1"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
+        <div className="flex items-center gap-1.5">
+          <img src="/Icon.png" alt="EchoPulse" className="w-5 h-5 rounded object-contain" />
+          <span className="text-xs text-gray-500">EchoPulse Media</span>
         </div>
+      </div>
+
+      {/* Title */}
+      <h3 className="text-base font-bold text-gray-900 mb-2 group-hover:text-orange-500 transition-colors line-clamp-2">
+        {blog.title}
+      </h3>
+
+      {/* Read More */}
+      <div className="flex items-center gap-1 text-gray-900 text-sm font-medium group-hover:text-orange-500 transition-colors">
+        <span>Read More</span>
+        <svg
+          className="w-4 h-4 transition-transform group-hover:translate-x-1"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
       </div>
     </Link>
   );
@@ -118,30 +127,73 @@ export default async function BlogsPage() {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-white pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16">
-        <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center">
-            <div className="inline-flex items-center gap-2 bg-orange-100 px-4 py-2 rounded-full mb-6 border border-orange-200">
-              <svg className="w-4 h-4 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z" />
-                <path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z" />
-              </svg>
-              <span className="text-orange-600 font-semibold text-sm">BLOG</span>
-            </div>
+      {/* Featured/Latest Blog Hero */}
+      {blogs.length > 0 && (
+        <section className="bg-white pt-24 sm:pt-28 pb-8 sm:pb-10">
+          <div className="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-0 lg:pl-0">
+            <Link
+              href={`/blogs/${blogs[0].slug}`}
+              className="group flex flex-col lg:flex-row gap-6 lg:gap-8 items-center lg:-ml-8"
+            >
+              {/* Featured Image */}
+              <div className="relative overflow-hidden rounded-lg border border-gray-200 w-full lg:w-[55%] shrink-0">
+                {blogs[0].mainImage ? (
+                  <Image
+                    src={urlFor(blogs[0].mainImage).width(500).height(280).fit("crop").url()}
+                    alt={blogs[0].title}
+                    width={500}
+                    height={280}
+                    className="w-full aspect-video object-cover transition-transform duration-500 group-hover:scale-105"
+                    priority
+                  />
+                ) : (
+                  <div className="w-full aspect-video bg-gradient-to-br from-orange-100 to-orange-50" />
+                )}
+              </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-4">
-              Insights & Resources
-            </h1>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Expert tips, industry insights, and strategies to help you elevate your brand&apos;s digital presence.
-            </p>
+              {/* Featured Content */}
+              <div className="lg:w-[45%]">
+                <div className="flex items-center gap-2 mb-1.5">
+                  {blogs[0].category && (
+                    <span className="text-[10px] font-medium text-orange-500 uppercase tracking-wider">
+                      {blogs[0].category}
+                    </span>
+                  )}
+                  <div className="flex items-center gap-1.5">
+                    <img src="/Icon.png" alt="EchoPulse" className="w-5 h-5 rounded object-contain" />
+                    <span className="text-sm text-gray-600 font-medium">EchoPulse Media</span>
+                  </div>
+                </div>
+
+                <p className="text-3xl lg:text-4xl font-bold text-gray-900 mb-3 group-hover:text-orange-500 transition-colors leading-tight">
+                  {blogs[0].title}
+                </p>
+
+                {blogs[0].excerpt && (
+                  <p className="text-gray-500 text-sm mb-3 line-clamp-2 leading-relaxed">
+                    {blogs[0].excerpt}
+                  </p>
+                )}
+
+                <div className="inline-flex items-center gap-1 text-gray-900 text-[11px] font-medium group-hover:text-orange-500 transition-colors">
+                  <span>Read More</span>
+                  <svg
+                    className="w-3 h-3 transition-transform group-hover:translate-x-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </div>
+              </div>
+            </Link>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Blog Grid Section */}
-      <section className="py-12 sm:py-16 lg:py-20 bg-gray-50">
+      <section className="py-12 sm:py-16 lg:py-20 bg-white">
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {blogs.length === 0 ? (
             <div className="text-center py-16">
@@ -153,13 +205,16 @@ export default async function BlogsPage() {
               <h3 className="text-xl font-bold text-gray-900 mb-2">No posts yet</h3>
               <p className="text-gray-600">Check back soon for new content.</p>
             </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-              {blogs.map((blog) => (
-                <BlogCard key={blog.slug} blog={blog} />
-              ))}
-            </div>
-          )}
+          ) : blogs.length > 1 ? (
+            <>
+              <h2 className="text-2xl font-bold text-gray-900 mb-8">More Articles</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                {blogs.slice(1).map((blog) => (
+                  <BlogCard key={blog.slug} blog={blog} />
+                ))}
+              </div>
+            </>
+          ) : null}
         </div>
       </section>
 
